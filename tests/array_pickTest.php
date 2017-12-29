@@ -16,30 +16,28 @@ final class array_pick_test extends TestCase
      * Test that array_pick yields items from subject array
      *
      * @dataProvider iterator
-     * @param mixed $needle
-     * @param array $haystack
+     * @param array $array
      * @return void
      */
-    final public function testYieldFromArrayPick($needle, array $haystack): void
+    final public function testYieldFromArrayPick(array $array): void
     {
-        $this->assertContains($needle, $haystack);
+        foreach(array_pick($array) as $needle) {
+            $this->assertContains($needle, $haystack);
+        }
     }
 
     final public function iterator(): array
     {
         return [
             'Numeric array' => [
-                array_pick([1, 2, 3, 4]),
                 [1, 2, 3, 4]
             ],
 
             'String array' => [
-                array_pick(['foo', 'bar', 'baz']),
                 ['foo', 'bar', 'baz']
             ],
 
             'Mixed array' => [
-                array_pick(['foo', 10, null]),
                 ['foo', 10, null]
             ],
         ];
