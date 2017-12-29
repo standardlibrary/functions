@@ -9,18 +9,19 @@ declare(strict_types=1);
  */
 
 if (!function_exists('array_pick')) {
-    function array_pick(array $arg = []): Iterator
+    function array_pick(array $array = []): Iterator
     {
-        $index = count($arg);
+        $shuffled = clone $array;
+        $index = count($shuffled);
 
         while ($index--) {
-            $random = floor(rand() * $index);
-            $temp = $arg[$index];
+            $random = floor(rand() % $index);
+            $temp = $shuffled[$index];
 
-            $arg[$index] = $arg[$random];
-            $arg[$random] = $temp;
+            $shuffled[$index] = $shuffled[$random];
+            $shuffled[$random] = $temp;
         }
 
-        yield from new ArrayIterator($arg);
+        yield from new ArrayIterator($shuffled);
     }
 }
