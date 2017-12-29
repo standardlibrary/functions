@@ -11,7 +11,7 @@ declare(strict_types=1);
 if (!function_exists('array_pick')) {
     function array_pick(array $array = []): Iterator
     {
-        $shuffled = clone $array;
+        $shuffled = $array;
         $index = count($shuffled);
 
         while ($index--) {
