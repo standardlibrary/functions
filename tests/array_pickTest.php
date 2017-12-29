@@ -25,7 +25,7 @@ final class array_pick_test extends TestCase
         $this->assertContains($needle, $haystack);
     }
 
-    final public function iterator(): Iterator
+    final public function iterator(): array
     {
         return [
             'Numeric array' => [
