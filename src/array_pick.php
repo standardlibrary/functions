@@ -9,7 +9,7 @@ declare(strict_types=1);
  */
 
 if (!function_exists('array_pick')) {
-    function array_pick(array &$arg = []): Iterator
+    function array_pick(array $arg = []): Iterator
     {
         $index = count($arg);
 
