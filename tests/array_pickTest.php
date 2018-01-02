@@ -30,6 +30,43 @@ final class array_pick_test extends TestCase
         }
     }
 
+    /**
+     * Test that array_pick yields items from optimized subject array
+     *
+     * @dataProvider iterator
+     * @param array $array
+     * @return void
+     */
+    final public function testOptimizedArrayPick(array $array): void
+    {
+        $counter = 0;
+        $limit = rand(1, count($array));
+
+        foreach(array_pick($array, $limit, STDLIB_OPTIMIZE_ARRAY) as $element) {
+            $this->assertContains($element, $array);
+            $this->assertLessThanOrEqual($limit, ++$counter);
+        }
+    }
+
+    /**
+     * Test that array_pick yields items from optimized subject array but
+     * preserving indexes
+     *
+     * @dataProvider iterator
+     * @param array $array
+     * @return void
+     */
+    final public function testOptimizedAndSavedIndexesArrayPick(array $array): void
+    {
+        $counter = 0;
+        $limit = rand(1, count($array));
+
+        foreach(array_pick($array, $limit, STDLIB_SAVE_INDEXES | STDLIB_OPTIMIZE_ARRAY) as $element) {
+            $this->assertContains($element, $array);
+            $this->assertLessThanOrEqual($limit, ++$counter);
+        }
+    }
+
     final public function iterator(): array
     {
         return [
@@ -50,7 +87,7 @@ final class array_pick_test extends TestCase
             ],
 
             'Large array' => [
-                range(0, 1000000)
+                range(0, 100000)
             ]
         ];
     }
