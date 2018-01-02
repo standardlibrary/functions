@@ -21,7 +21,7 @@ final class array_pick_test extends TestCase
      */
     final public function testYieldFromArrayPick(array $array): void
     {
-        foreach(array_pick($array) as $needle) {
+        foreach(array_pick($array, rand(1, count($array))) as $needle) {
             $this->assertContains($needle, $haystack);
         }
     }
@@ -30,16 +30,20 @@ final class array_pick_test extends TestCase
     {
         return [
             'Numeric array' => [
-                [1, 2, 3, 4]
+                range(0, 10000)
             ],
 
             'String array' => [
-                ['foo', 'bar', 'baz']
+                range('a', 'z')
             ],
 
             'Mixed array' => [
-                ['foo', 10, null]
+                array_combine(range(0,1000), range('a', 'z'))
             ],
+
+            'Large array' => [
+                rand(0, 10000000)
+            ]
         ];
     }
 }
