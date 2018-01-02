@@ -21,8 +21,12 @@ final class array_pick_test extends TestCase
      */
     final public function testYieldFromArrayPick(array $array): void
     {
-        foreach(array_pick($array, rand(1, count($array))) as $key => $needle) {
-            $this->assertContains($needle, $haystack);
+        $counter = 0;
+        $limit = rand(1, count($array));
+
+        foreach(array_pick($array, $limit) as $element) {
+            $this->assertContains($element, $array);
+            $this->assertLessThanOrEqual($limit, ++$counter);
         }
     }
 
