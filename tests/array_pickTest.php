@@ -38,7 +38,11 @@ final class array_pick_test extends TestCase
             ],
 
             'Mixed array' => [
-                array_combine(range(0,23), range('a', 'z'))
+                array_merge(range(0,100), range('a', 'z'))
+            ],
+
+            'Associative array' => [
+                array_combine(range('a', 'z'), range(1, 24))
             ],
 
             'Large array' => [
