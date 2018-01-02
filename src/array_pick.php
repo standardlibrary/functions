@@ -40,7 +40,11 @@ if (!function_exists('array_pick')) {
         }
 
         // Grab all the keys from the array
-        $array_keys = array_keys($array);
+        if ($flags & STDLIB_SAVE_INDEXES) {
+            $array_keys = array_keys($array);
+        } else {
+            $array_keys = range(0, count($array) - 1);
+        }
 
         // Get last index (key)
         $max_index = count($array) - 1;
