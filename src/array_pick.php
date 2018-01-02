@@ -43,7 +43,8 @@ if (!function_exists('array_pick')) {
         $array_keys = array_keys($array);
 
         // Get last index (key)
-        $max_index = key(end($array));
+        end($array);
+        $max_index = key($array);
 
         // Limit quantity of picked items to $limit or the entire array
         $iterations = min(($limit ?? count($array_keys)), count($array_keys));

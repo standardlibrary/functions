@@ -50,7 +50,7 @@ final class array_pick_test extends TestCase
             ],
 
             'Large array' => [
-                rand(0, 1000000)
+                range(0, 1000000)
             ]
         ];
     }
