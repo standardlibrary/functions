@@ -11,15 +11,14 @@ declare(strict_types=1);
 if (!function_exists('array_pick')) {
     function array_pick(array $array = []): Iterator
     {
-        $shuffled = $array;
         $index = count($shuffled);
 
         while ($index--) {
             $random = floor(rand() % $index);
-            $temp = $shuffled[$index];
+            $temp = $array[$index];
 
-            $shuffled[$index] = $shuffled[$random];
-            $shuffled[$random] = $temp;
+            $array[$index] = $array[$random];
+            $array[$random] = $temp;
         }
 
         yield from new ArrayIterator($shuffled);
