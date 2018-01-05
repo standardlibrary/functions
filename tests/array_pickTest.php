@@ -31,39 +31,21 @@ final class array_pick_test extends TestCase
     }
 
     /**
-     * Test that array_pick yields items from optimized subject array
+     * Test that array_pick yields items from subject array without saving indexes
      *
      * @dataProvider iterator
      * @param array $array
      * @return void
      */
-    final public function testOptimizedArrayPick(array $array): void
+    final public function testYieldFromArrayPickWithoutSavingIndexes(array $array): void
     {
         $counter = 0;
         $limit = rand(1, count($array));
 
-        foreach(array_pick($array, $limit, STDLIB_OPTIMIZE_ARRAY) as $element) {
+        foreach(array_pick($array, $limit, false) as $key => $element) {
             $this->assertContains($element, $array);
             $this->assertLessThanOrEqual($limit, ++$counter);
-        }
-    }
-
-    /**
-     * Test that array_pick yields items from optimized subject array but
-     * preserving indexes
-     *
-     * @dataProvider iterator
-     * @param array $array
-     * @return void
-     */
-    final public function testOptimizedAndSavedIndexesArrayPick(array $array): void
-    {
-        $counter = 0;
-        $limit = rand(1, count($array));
-
-        foreach(array_pick($array, $limit, STDLIB_SAVE_INDEXES | STDLIB_OPTIMIZE_ARRAY) as $element) {
-            $this->assertContains($element, $array);
-            $this->assertLessThanOrEqual($limit, ++$counter);
+            $this->assertFalse(is_nan($key));
         }
     }
 
