@@ -10,9 +10,6 @@ declare(strict_types=1);
 
 if (!function_exists('array_pick')) {
 
-    define('STDLIB_OPTIMIZE_ARRAY', 2);
-    define('STDLIB_SAVE_INDEXES', 4);
-
     /**
      * Pick random elements from an array
      *
@@ -20,34 +17,24 @@ if (!function_exists('array_pick')) {
      * function performs a shuffle on up to $limit elements where $limit is the
      * number of random elements you want to pick. It will also work on
      * associative arrays and sparse arrays.
-     * Use the (optional) STDLIB_OPTIMIZE_ARRAY flag to optimize sparse arrays
-     * before processing. Add the STDLIB_SAVE_INDEXES flag to preserve indexes
-     * where possible during optimization.
      *
      * @param array $array - The array to pick random elements from.
      * @param int $limit - The maximum quantity of elements to pick.
-     * @param int $flags - Optional bitwise flags.
+     * @param bool $save_indexes - Preserve the keys of the subject array
      * @return Iterator - Returns a PHP generator to iterate over the picked elements.
      */
-    function array_pick(array $array, int $limit = null, int $flags = STDLIB_SAVE_INDEXES): Iterator
+    function array_pick(array $array, int $limit = null, bool $save_indexes): Iterator
     {
-        // Optimize array, removing indexes if specified
-        if ($flags & STDLIB_OPTIMIZE_ARRAY) {
-            $array = SplFixedArray::fromArray(
-                $array,
-                ($flags & STDLIB_SAVE_INDEXES ? true : false)
-            );
-        }
-
-        // Grab all the keys from the array
-        if ($flags & STDLIB_SAVE_INDEXES) {
-            $array_keys = array_keys($array);
-        } else {
-            $array_keys = range(0, count($array) - 1);
-        }
-
         // Get last index (key)
         $max_index = count($array) - 1;
+
+        // Grab all the keys from the array
+        if ($save_indexes) {
+            $array_keys = array_keys($array);
+        } else {
+            $array = array_values($array);
+            $array_keys = range(0, $max_index);
+        }
 
         // Limit quantity of picked items to $limit or the entire array
         $iterations = min(($limit ?? count($array_keys)), count($array_keys));
