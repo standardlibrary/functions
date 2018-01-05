@@ -23,7 +23,7 @@ if (!function_exists('array_pick')) {
      * @param bool $save_indexes - Preserve the keys of the subject array
      * @return Iterator - Returns a PHP generator to iterate over the picked elements.
      */
-    function array_pick(array $array, int $limit = null, bool $save_indexes): Iterator
+    function array_pick(array $array, int $limit = null, bool $save_indexes = true): Iterator
     {
         // Get last index (key)
         $max_index = count($array) - 1;
