@@ -22,7 +22,7 @@ final class array_pick_test extends TestCase
     final public function testYieldFromArrayPick(array $array): void
     {
         $counter = 0;
-        $limit = rand(1, count($array));
+        $limit = rand(10, 100);
 
         foreach(array_pick($array, $limit) as $element) {
             $this->assertContains($element, $array);
@@ -40,7 +40,7 @@ final class array_pick_test extends TestCase
     final public function testYieldFromArrayPickWithoutSavingIndexes(array $array): void
     {
         $counter = 0;
-        $limit = rand(1, count($array));
+        $limit = rand(10, 100);
 
         foreach(array_pick($array, $limit, false) as $key => $element) {
             $this->assertContains($element, $array);
@@ -69,7 +69,7 @@ final class array_pick_test extends TestCase
             ],
 
             'Large array' => [
-                range(0, 10000)
+                range(0, PHP_INT_MAX)
             ]
         ];
     }
