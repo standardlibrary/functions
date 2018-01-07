@@ -69,7 +69,7 @@ final class array_pick_test extends TestCase
             ],
 
             'Large array' => [
-                range(0, PHP_INT_MAX)
+                range(0, 1000000)
             ]
         ];
     }
