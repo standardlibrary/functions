@@ -15,21 +15,26 @@
          printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer"
   >
 
-	<testsuites>
-		<testsuite name="standardlibrary/functions">
-			<directory>tests/</directory>
-		</testsuite>
-	</testsuites>
+    <testsuites>
+    	<testsuite name="standardlibrary/functions">
+    		<directory>tests/</directory>
+    	</testsuite>
+    </testsuites>
 
-  <filter>
-    <whitelist addUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">./src</directory>
-    </whitelist>
-  </filter>
-  <logging>
-    <log type="coverage-clover"
-         target="./coverage.clover"
-         showUncoveredFiles="true"
-      />
-  </logging>
+    <listeners>
+        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener" />
+    </listeners>
+
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-clover"
+            target="./coverage.clover"
+            showUncoveredFiles="true"
+        />
+    </logging>
 </phpunit>
