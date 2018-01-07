@@ -69,7 +69,7 @@ final class array_pick_test extends TestCase
             ],
 
             'Large array' => [
-                range(0, 100000)
+                range(0, 10000)
             ]
         ];
     }
