@@ -1,0 +1,35 @@
+{
+  "name": "standardlibrary/functions",
+  "description": "Set of global helper functions",
+  "type": "library",
+  "keywords": ["php", "helper", "library", "functions"],
+  "homepage": "https://github.com/standardlibrary",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Simon Deeley",
+      "email": "simondeeley@users.noreply.github.com",
+      "homepage": "https://github.com/simondeeley",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/standardlibrary/functions/issues",
+    "source": "https://github.com/standardlibrary/functions",
+    "docs": "https://github.com/standardlibrary/functions/blob/master/README.md"
+  },
+  "require": {
+    "php": "~7.1"
+  },
+  "autoload": {
+    "files": [
+        "src/array_pick.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
